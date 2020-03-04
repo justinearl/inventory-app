@@ -62,23 +62,45 @@ document.addEventListener("DOMContentLoaded", function() {
     newAuthor.innerHTML = author;
     let newCondition = document.createElement("td");
     newCondition.innerHTML = condition;
+    let funct = document.createElement("td");
     let f1 = document.createElement("button");
     f1.innerHTML = "Edit";
     let f2 = document.createElement("button");
     f2.innerHTML = "Delete";
 
     f1.onclick = () => {
-      newRow.contentEditable = "true";
+      newID.contentEditable = "true";
+      newItem.contentEditable = "true";
+      newCount.contentEditable = "true";
+      newAuthor.contentEditable = "true";
+      newCondition.contentEditable = "true";
+      newID.style.background = "white";
+      newItem.style.background = "white";
+      newCount.style.background = "white";
+      newAuthor.style.background = "white";
+      newCondition.style.background = "white";
 
+      f1.style.display = "none";
+      f2.style.display = "none";
       let j = document.createElement("button");
       j.innerHTML = "Save";
-      newRow.appendChild(j);
+      funct.appendChild(j);
       j.onclick = () => {
-        let updateID = newID.firstChild.nodeValue;
-        let updateItem = newItem.firstChild.nodeValue;
-        let updateCount = newCount.firstChild.nodeValue;
-        let updateAuthor = newAuthor.firstChild.nodeValue;
-        let updateCondition = newCondition.firstChild.nodeValue;
+        let updateID = newID.firstChild.nodeValue
+          ? newID.firstChild.nodeValue
+          : "0";
+        let updateItem = newItem.firstChild.nodeValue
+          ? newItem.firstChild.nodeValue
+          : "0";
+        let updateCount = newCount.firstChild.nodeValue
+          ? newCount.firstChild.nodeValue
+          : "0";
+        let updateAuthor = newAuthor.firstChild.nodeValue
+          ? newAuthor.firstChild.nodeValue
+          : "0";
+        let updateCondition = newCondition.firstChild.nodeValue
+          ? newCondition.firstChild.nodeValue
+          : "0";
         db.collection("inventory")
           .doc(realID)
           .update({
@@ -89,6 +111,8 @@ document.addEventListener("DOMContentLoaded", function() {
             condition: updateCondition,
             dateCreated: new Date().getTime()
           });
+        f1.style.display = "block";
+        f2.style.display = "block";
         loadData();
       };
     };
@@ -109,8 +133,9 @@ document.addEventListener("DOMContentLoaded", function() {
     newRow.appendChild(newDate);
     newRow.appendChild(newAuthor);
     newRow.appendChild(newCondition);
-    newRow.appendChild(f1);
-    newRow.appendChild(f2);
+    funct.appendChild(f1);
+    funct.appendChild(f2);
+    newRow.appendChild(funct);
     table.appendChild(newRow);
   };
 
@@ -149,7 +174,6 @@ document.addEventListener("DOMContentLoaded", function() {
     let currentDate =
       mm + "/" + dd + "/" + yyyy + "  " + hr + ":" + min + ":" + sec;
 
-    today = mm + "/" + dd + "/" + yyyy;
     db.collection("inventory").add({
       id: id,
       item: item,

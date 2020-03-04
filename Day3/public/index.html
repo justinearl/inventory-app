@@ -32,7 +32,7 @@
     </table> -->
 
     <table id="inventory">
-      <thead>
+      <thead class="">
         <tr>
           <th>Item ID</th>
           <th>Item</th>
@@ -46,13 +46,15 @@
       <tbody id="tbody"></tbody>
     </table>
 
-    <p>NEW ITEM</p>
-    <input type="text" id="id" placeholder="Item ID" />
-    <input type="text" id="item" placeholder="Item name" />
-    <input type="text" id="count" placeholder="Item Count" />
-    <input type="text" id="author" placeholder="Processed By" />
-    <input type="text" id="condition" placeholder="Condition" />
-    <button id="addBtn">Add Item</button>
+    <p>ADD NEW ITEM</p>
+    <div class="wrapper">
+      <input type="text" id="id" placeholder="Item ID" />
+      <input type="text" id="item" placeholder="Item name" />
+      <input type="text" id="count" placeholder="Item Count" />
+      <input type="text" id="author" placeholder="Processed By" />
+      <input type="text" id="condition" placeholder="Condition" />
+      <button id="addBtn">Add Item</button>
+    </div>
 
     <div id="search">
       <input type="text" id="searchInput" placeholder="Item Name" />
