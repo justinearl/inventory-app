@@ -1,0 +1,48 @@
+[debug] [2020-03-04T01:04:18.689Z] ----------------------------------------------------------------------
+[debug] [2020-03-04T01:04:18.691Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Asus\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2020-03-04T01:04:18.691Z] CLI Version:   7.13.1
+[debug] [2020-03-04T01:04:18.691Z] Platform:      win32
+[debug] [2020-03-04T01:04:18.691Z] Node Version:  v12.16.1
+[debug] [2020-03-04T01:04:18.692Z] Time:          Wed Mar 04 2020 09:04:18 GMT+0800 (China Standard Time)
+[debug] [2020-03-04T01:04:18.692Z] ----------------------------------------------------------------------
+[debug] [2020-03-04T01:04:18.692Z] 
+[debug] [2020-03-04T01:04:18.701Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-04T01:04:18.701Z] > authorizing via signed-in user
+[debug] [2020-03-04T01:04:18.701Z] [iam] checking project inventory-app-wizy for permissions ["firebase.projects.get"]
+[debug] [2020-03-04T01:04:18.704Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/inventory-app-wizy:testIamPermissions  
+
+[debug] [2020-03-04T01:04:20.087Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-04T01:04:20.089Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/inventory-app-wizy  
+ 
+[debug] [2020-03-04T01:04:20.548Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'C:\Users\Asus\Desktop\Wizy-training\Day3'...
+[info] 
+[debug] [2020-03-04T01:04:20.552Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/inventory-app-wizy/webApps/-/config  
+ 
+[debug] [2020-03-04T01:04:21.526Z] <<< HTTP RESPONSE 200
+[warn] !  hosting: Port 5000 is not available. Trying another port...
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5005
+[warn] !  hosting: Could not load Firebase SDK firebase-app.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:15.441Z] Error: connect ETIMEDOUT 172.217.31.35:443
+[warn] !  hosting: Could not load Firebase SDK firebase-auth.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:15.443Z] Error: connect ETIMEDOUT 172.217.31.35:443
+[warn] !  hosting: Could not load Firebase SDK firebase-database.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:15.455Z] Error: connect ETIMEDOUT 172.217.31.35:443
+[warn] !  hosting: Could not load Firebase SDK firebase-messaging.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:15.688Z] Error: connect ETIMEDOUT 172.217.31.35:443
+[warn] !  hosting: Could not load Firebase SDK firebase-storage.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:15.754Z] Error: connect ETIMEDOUT 172.217.31.35:443
+[warn] !  hosting: Could not load Firebase SDK firebase-firestore.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:15.777Z] Error: connect ETIMEDOUT 172.217.31.35:443
+[warn] !  hosting: Could not load Firebase SDK firebase-app.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:49.712Z] Error: connect ETIMEDOUT 172.217.31.35:443
+[warn] !  hosting: Could not load Firebase SDK firebase-auth.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:49.741Z] Error: connect ETIMEDOUT 172.217.31.35:443
+[warn] !  hosting: Could not load Firebase SDK firebase-storage.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:50.234Z] Error: connect ETIMEDOUT 172.217.31.35:443
+[warn] !  hosting: Could not load Firebase SDK firebase-messaging.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:50.234Z] Error: connect ETIMEDOUT 172.217.31.35:443
+[warn] !  hosting: Could not load Firebase SDK firebase-firestore.js v7.9.3, check your internet connection.
+[debug] [2020-03-04T02:31:50.237Z] Error: connect ETIMEDOUT 172.217.31.35:443
