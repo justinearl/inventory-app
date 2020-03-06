@@ -12,35 +12,51 @@ document.addEventListener("DOMContentLoaded", function() {
   let searchInput = document.getElementById("searchInput");
   let searchBody = document.getElementById("searchResultBody");
 
+  searchInput.onkeyup = () => {
+    let countItems = 0;
+    db.collection("inventory")
+      .where("item", "==", searchInput.value)
+      .get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          countItems++;
+          table.innerHTML = "";
+          dispItem(
+            doc.id,
+            doc.data().id,
+            doc.data().item,
+            doc.data().count,
+            doc.data().date,
+            doc.data().author,
+            doc.data().condition
+          );
+        });
+      })
+      .catch(function(error) {
+        console.log("Error getting documents: ", error);
+      });
+
+    if (countItems < 1) {
+      loadData();
+    }
+  };
+
   searchBtn.onclick = () => {
     db.collection("inventory")
       .where("item", "==", searchInput.value)
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-          let x = document.createElement("tr");
-          let a = document.createElement("td");
-          let b = document.createElement("td");
-          let c = document.createElement("td");
-          let d = document.createElement("td");
-          let e = document.createElement("td");
-          let f = document.createElement("td");
-
-          a.innerHTML = doc.data().id;
-          b.innerHTML = doc.data().item;
-          c.innerHTML = doc.data().count;
-          d.innerHTML = doc.data().author;
-          e.innerHTML = doc.data().date;
-          f.innerHTML = doc.data().condition;
-
-          x.appendChild(a);
-          x.appendChild(b);
-          x.appendChild(c);
-          x.appendChild(e);
-          x.appendChild(d);
-          x.appendChild(f);
-          searchBody.appendChild(x);
-          document.getElementById("searchResult").style.display = "block";
+          table.innerHTML = "";
+          dispItem(
+            doc.id,
+            doc.data().id,
+            doc.data().item,
+            doc.data().count,
+            doc.data().date,
+            doc.data().author,
+            doc.data().condition
+          );
         });
       })
       .catch(function(error) {
@@ -109,7 +125,8 @@ document.addEventListener("DOMContentLoaded", function() {
             count: updateCount,
             author: updateAuthor,
             condition: updateCondition,
-            dateCreated: new Date().getTime()
+            dateCreated: new Date().getTime(),
+            date: dateGET()
           });
         f1.style.display = "block";
         f2.style.display = "block";
@@ -159,10 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
 
-  let addItem = (id, item, count, author, condition) => {
-    addBtn.innerHTML = "Adding ...";
-    addBtn.disabled = true;
-
+  let dateGET = () => {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, "0");
     let mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -173,6 +187,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let currentDate =
       mm + "/" + dd + "/" + yyyy + "  " + hr + ":" + min + ":" + sec;
+    return currentDate;
+  };
+
+  let addItem = (id, item, count, author, condition) => {
+    addBtn.innerHTML = "Adding ...";
+    addBtn.disabled = true;
 
     db.collection("inventory").add({
       id: id,
@@ -181,7 +201,7 @@ document.addEventListener("DOMContentLoaded", function() {
       dateCreated: new Date().getTime(),
       author: author,
       condition: condition,
-      date: currentDate
+      date: dateGET()
     });
     addBtn.innerHTML = "Add Item";
     addBtn.disabled = false;

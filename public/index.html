@@ -30,7 +30,10 @@
         <th>Functions</th>
       </tr>
     </table> -->
-
+    <div id="search">
+      <input type="text" id="searchInput" placeholder="Item Name" />
+      <button id="searchBtn">Search by Item</button>
+    </div>
     <table id="inventory">
       <thead class="">
         <tr>
@@ -54,24 +57,6 @@
       <input type="text" id="author" placeholder="Processed By" />
       <input type="text" id="condition" placeholder="Condition" />
       <button id="addBtn">Add Item</button>
-    </div>
-
-    <div id="search">
-      <input type="text" id="searchInput" placeholder="Item Name" />
-      <button id="searchBtn">Search by Item</button>
-      <table id="searchResult" style="display: none;">
-        <thead>
-          <tr>
-            <th>Item ID</th>
-            <th>Item</th>
-            <th>No. of items</th>
-            <th>Last Update</th>
-            <th>Processed By</th>
-            <th>Condition</th>
-          </tr>
-        </thead>
-        <tbody id="searchResultBody"></tbody>
-      </table>
     </div>
   </body>
 </html>
