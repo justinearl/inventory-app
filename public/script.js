@@ -10,26 +10,52 @@ document.addEventListener("DOMContentLoaded", function() {
   let addBtn = document.getElementById("addBtn");
   let searchBtn = document.getElementById("searchBtn");
   let searchInput = document.getElementById("searchInput");
-  let searchBody = document.getElementById("searchResultBody");
+  let addNew = document.getElementById("addFunc");
+  let modal = document.getElementById("myModal");
+  let span = document.getElementsByClassName("close")[0];
+
+  addNew.onclick = () => {
+    modal.style.display = "block";
+  };
+
+  span.onclick = () => {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
 
   searchInput.onkeyup = () => {
     let countItems = 0;
+    let regex = new RegExp(searchInput.value.toLowerCase());
+
     db.collection("inventory")
-      .where("item", "==", searchInput.value)
       .get()
       .then(function(querySnapshot) {
+        table.innerHTML = "";
         querySnapshot.forEach(function(doc) {
-          countItems++;
-          table.innerHTML = "";
-          dispItem(
-            doc.id,
-            doc.data().id,
-            doc.data().item,
-            doc.data().count,
-            doc.data().date,
-            doc.data().author,
-            doc.data().condition
-          );
+          if (
+            regex.test(doc.data().id) ||
+            regex.test(doc.data().item) ||
+            regex.test(doc.data().count) ||
+            regex.test(doc.data().author) ||
+            regex.test(doc.data().condition) ||
+            regex.test(doc.data().date)
+          ) {
+            countItems++;
+            dispItem(
+              doc.id,
+              doc.data().id,
+              doc.data().item,
+              doc.data().count,
+              doc.data().author,
+              doc.data().condition,
+              doc.data().date
+            );
+          }
         });
       })
       .catch(function(error) {
@@ -42,29 +68,45 @@ document.addEventListener("DOMContentLoaded", function() {
   };
 
   searchBtn.onclick = () => {
+    let countItems = 0;
+    let regex = new RegExp(searchInput.value.toLowerCase());
+
     db.collection("inventory")
-      .where("item", "==", searchInput.value)
       .get()
       .then(function(querySnapshot) {
+        table.innerHTML = "";
         querySnapshot.forEach(function(doc) {
-          table.innerHTML = "";
-          dispItem(
-            doc.id,
-            doc.data().id,
-            doc.data().item,
-            doc.data().count,
-            doc.data().date,
-            doc.data().author,
-            doc.data().condition
-          );
+          if (
+            regex.test(doc.data().id) ||
+            regex.test(doc.data().item) ||
+            regex.test(doc.data().count) ||
+            regex.test(doc.data().author) ||
+            regex.test(doc.data().condition) ||
+            regex.test(doc.data().date)
+          ) {
+            countItems++;
+            dispItem(
+              doc.id,
+              doc.data().id,
+              doc.data().item,
+              doc.data().count,
+              doc.data().author,
+              doc.data().condition,
+              doc.data().date
+            );
+          }
         });
       })
       .catch(function(error) {
         console.log("Error getting documents: ", error);
       });
+
+    if (countItems < 1) {
+      loadData();
+    }
   };
 
-  let dispItem = (realID, id, item, count, date, author, condition) => {
+  let dispItem = (realID, id, item, count, author, condition, date) => {
     let newRow = document.createElement("tr");
     let newID = document.createElement("td");
     newID.innerHTML = id;
@@ -147,9 +189,10 @@ document.addEventListener("DOMContentLoaded", function() {
     newRow.appendChild(newID);
     newRow.appendChild(newItem);
     newRow.appendChild(newCount);
-    newRow.appendChild(newDate);
+
     newRow.appendChild(newAuthor);
     newRow.appendChild(newCondition);
+    newRow.appendChild(newDate);
     funct.appendChild(f1);
     funct.appendChild(f2);
     newRow.appendChild(funct);
@@ -168,9 +211,10 @@ document.addEventListener("DOMContentLoaded", function() {
             doc.data().id,
             doc.data().item,
             doc.data().count,
-            doc.data().date,
+
             doc.data().author,
-            doc.data().condition
+            doc.data().condition,
+            doc.data().date
           );
         }
       });
@@ -205,6 +249,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     addBtn.innerHTML = "Add Item";
     addBtn.disabled = false;
+    modal.style.display = "none";
   };
 
   addBtn.onclick = () => {
@@ -237,9 +282,10 @@ document.addEventListener("DOMContentLoaded", function() {
             doc.data().id,
             doc.data().item,
             doc.data().count,
-            doc.data().date,
+
             doc.data().author,
-            doc.data().condition
+            doc.data().condition,
+            doc.data().date
           );
         });
       });

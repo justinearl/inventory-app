@@ -30,9 +30,21 @@
         <th>Functions</th>
       </tr>
     </table> -->
-    <div id="search">
-      <input type="text" id="searchInput" placeholder="Item Name" />
-      <button id="searchBtn">Search by Item</button>
+    <div id="search" width="1em" height="1em" class="wrapper">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search"
+        width="2em"
+        height="2em"
+      />
+      <img
+        src="../images/search.svg"
+        alt="search"
+        id="searchBtn"
+        width="20em"
+        height="20em"
+      />
     </div>
     <table id="inventory">
       <thead class="">
@@ -40,23 +52,35 @@
           <th>Item ID</th>
           <th>Item</th>
           <th>No. of items</th>
-          <th>Last Update</th>
+
           <th>Processed By</th>
           <th>Condition</th>
+          <th>Last Update</th>
           <th>Functions</th>
         </tr>
       </thead>
       <tbody id="tbody"></tbody>
     </table>
-
-    <p>ADD NEW ITEM</p>
-    <div class="wrapper">
-      <input type="text" id="id" placeholder="Item ID" />
-      <input type="text" id="item" placeholder="Item name" />
-      <input type="text" id="count" placeholder="Item Count" />
-      <input type="text" id="author" placeholder="Processed By" />
-      <input type="text" id="condition" placeholder="Condition" />
-      <button id="addBtn">Add Item</button>
+    <img
+      id="addFunc"
+      src="../images/plus.svg"
+      alt="Add new Item"
+      width="35em"
+      height="35em"
+    />
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="wrapper" style="flex-direction: column;">
+          <p>ADD ITEM TO INVENTORY</p>
+          <input type="text" id="id" placeholder="Item ID" />
+          <input type="text" id="item" placeholder="Item name" />
+          <input type="text" id="count" placeholder="Item Count" />
+          <input type="text" id="author" placeholder="Processed By" />
+          <input type="text" id="condition" placeholder="Condition" />
+          <button id="addBtn">Add Item</button>
+        </div>
+      </div>
     </div>
   </body>
 </html>
