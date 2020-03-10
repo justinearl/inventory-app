@@ -38,12 +38,12 @@ document.addEventListener("DOMContentLoaded", function() {
         table.innerHTML = "";
         querySnapshot.forEach(function(doc) {
           if (
-            regex.test(doc.data().id) ||
-            regex.test(doc.data().item) ||
-            regex.test(doc.data().count) ||
-            regex.test(doc.data().author) ||
-            regex.test(doc.data().condition) ||
-            regex.test(doc.data().date)
+            regex.test(doc.data().id.toLowerCase()) ||
+            regex.test(doc.data().item.toLowerCase()) ||
+            regex.test(doc.data().count.toLowerCase()) ||
+            regex.test(doc.data().author.toLowerCase()) ||
+            regex.test(doc.data().condition.toLowerCase()) ||
+            regex.test(doc.data().date.toLowerCase())
           ) {
             countItems++;
             dispItem(
