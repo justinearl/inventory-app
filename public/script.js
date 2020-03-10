@@ -11,22 +11,6 @@ document.addEventListener("DOMContentLoaded", function() {
   let searchBtn = document.getElementById("searchBtn");
   let searchInput = document.getElementById("searchInput");
   let addNew = document.getElementById("addFunc");
-  let modal = document.getElementById("myModal");
-  let span = document.getElementsByClassName("close")[0];
-
-  addNew.onclick = () => {
-    modal.style.display = "block";
-  };
-
-  span.onclick = () => {
-    modal.style.display = "none";
-  };
-
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  };
 
   searchInput.onkeyup = () => {
     let countItems = 0;
@@ -249,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     addBtn.innerHTML = "Add Item";
     addBtn.disabled = false;
-    modal.style.display = "none";
+    $("#staticBackdrop").modal("hide");
   };
 
   addBtn.onclick = () => {
